@@ -5,6 +5,7 @@
 
         <?php
             if(isset($_POST['acao'])){
+                $preco = \Painel::formatarMoeda($_POST['preco']);
                 $nome = $_POST['nome'];
                 $descricao = $_POST['descricao'];
                 $largura = $_POST['largura'];
@@ -39,8 +40,8 @@
                         $imagens[] = Painel::uploadFile($imagemAtual);
                     }   
 
-                    $sql = Mysql::Conectar()->prepare("INSERT INTO `tb_admin.estoque` VALUES (null,?,?,?,?,?,?,?)");
-                    $sql->execute(array($nome,$descricao,$largura,$altura,$comprimento,$peso,$quantidade));
+                    $sql = Mysql::Conectar()->prepare("INSERT INTO `tb_admin.estoque` VALUES (null,?,?,?,?,?,?,?,?)");
+                    $sql->execute(array($nome,$descricao,$largura,$altura,$comprimento,$peso,$preco,$quantidade));
                     $lastId = MySql::conectar()->lastInsertId();
                     foreach ($imagens as $key => $value){
                         $sql = Mysql::conectar()->exec("INSERT INTO `tb_admin.estoque_imagens` VALUES (null,$lastId,'$value')");
@@ -79,6 +80,11 @@
         <div class="form-group">
             <label><i class="fa-solid fa-scale-unbalanced-flip"></i> Peso do Produto:</label>
             <input type="number" name="peso" min="0" max="900" step="1" value="0">
+        </div><!--form-group-->
+
+        <div class="form-group">
+            <label><i class="fa-solid fa-scale-unbalanced-flip"></i> Preço do Produto:</label>
+            <input type="text" name="preco"/>
         </div><!--form-group-->
 
         <div class="form-group">

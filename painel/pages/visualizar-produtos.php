@@ -102,6 +102,7 @@
                     <p><b><i class="fa fa-pencil"></i> Altura:</b> <?php echo $value['altura']; ?> cm</p>
                     <p><b><i class="fa fa-pencil"></i> Comprimento:</b> <?php echo $value['comprimento']; ?> cm</p>
                     <p><b><i class="fa fa-pencil"></i> Peso:</b> <?php echo $value['peso']; ?> g</p>
+                    <p><b><i class="fa fa-pencil"></i> Preço:</b> R$<?php echo \Painel::convertMoney($value['preco']); ?> </p>
 
                     <div class="group-btn">
                         <form class="form-quantidade" method="POST">
